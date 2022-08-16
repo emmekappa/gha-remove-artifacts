@@ -88,6 +88,13 @@ async function run() {
 
         return configs.retriesEnabled;
       },
+      onSecondaryRateLimit: (retryAfter, options) => {
+        console.error(
+          `Secondary rate limit reached for request ${options.method} ${options.url}, retry count: ${options.request.retryCount}`
+        );
+
+        console.log(`Retrying after ${retryAfter} seconds!`);
+      },
     },
   });
 
